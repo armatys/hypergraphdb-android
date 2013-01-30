@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="HyperGraphDB for Android" default="all">
+  <description>HyperGraphDB for Android</description>
+
+  <property name="dist" value="dist" />
+  <property name="version" value="1.2" />
+  <property name="jar-name" value="hypergraph-android-${version}.jar" />
+
+  <target name="compile">
+    <ant inheritAll="false" dir="openbeans"/>
+    <ant inheritAll="false" dir="hgdb-android" target="jar"/>    
+    <ant inheritAll="false" dir="hgbdbje-android" target="jar"/>
+  </target>
+
+  <target name="dist" depends="compile">
+    <mkdir dir="${dist}"/>
+    <zip destfile="${dist}/${jar-name}" keepcompression="true" duplicate="preserve">
+        <zipgroupfileset dir="libs" includes="**/*.jar"/>
+        <zipgroupfileset dir="openbeans" includes="**/*.jar"/>
+        <zipgroupfileset dir="hgdb-android" includes="**/*.jar"/>
+        <zipgroupfileset dir="hgbdbje-android" includes="**/*.jar"/>
+    </zip>
+  </target>
+
+  <target name="all" depends="dist"/>
+
+  <target description="Clean all targets" name="clean">
+    <delete dir="${dist}"/>
+    <ant inheritAll="false" dir="hgbdbje-android" target="clean"/>
+    <ant inheritAll="false" dir="hgdb-android" target="clean"/>
+    <ant inheritAll="false" dir="openbeans" target="clean"/>
+  </target>
+</project>

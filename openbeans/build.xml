@@ -1,0 +1,26 @@
+<project name="openbeans" default="jar">
+  <property name="build" value="build" />
+  <property name="dist" value="dist" />
+  <property name="debug" value="on" />
+  <property name="src-path" value="src" />
+  <property name="jar-name" value="openbeans.jar" />
+
+  <target name="init">
+    <mkdir dir="${build}"/>
+    <mkdir dir="${dist}"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <javac debug="${debug}" destdir="${build}" srcdir="${src-path}" />
+  </target>
+
+	<target name="jar" depends="compile">
+    <jar basedir="${build}" jarfile="${dist}/${jar-name}" />
+	</target>
+
+  <target description="clean up" name="clean">
+    <delete dir="${build}" />
+    <delete dir="${dist}" />
+  </target>
+	
+</project>

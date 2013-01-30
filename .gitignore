@@ -1,0 +1,13 @@
+build/
+dist/
+.classpath
+.metadata/
+.project
+.settings/
+.idea/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+log/
+target/
