@@ -6,11 +6,7 @@ import com.sleepycat.je.EnvironmentConfig;
 
 public class BJEConfig
 {
-	// public static final long DEFAULT_STORE_CACHE = 20*1024*1024; // 20MB
-	public static final long DEFAULT_STORE_CACHE = 100 * 1024 * 1024; // 100MB
-																		// Alain
-																		// for
-																		// tests
+	public static final long DEFAULT_STORE_CACHE = 5*1024*1024; // 5MB
 	public static final int DEFAULT_NUMBER_OF_STORAGE_CACHES = 1;
 
 	private EnvironmentConfig envConfig;
@@ -24,16 +20,16 @@ public class BJEConfig
 		envConfig.setAllowCreate(!readOnly);
 		dbConfig.setAllowCreate(!readOnly);
 
-		// envConfig.setCacheSize(DEFAULT_STORE_CACHE);
-		envConfig.setCachePercent(30);
+		envConfig.setCacheSize(DEFAULT_STORE_CACHE);
+		//envConfig.setCachePercent(30);
 
 		envConfig.setConfigParam(EnvironmentConfig.LOG_FILE_MAX,
 				Long.toString(1000000l));
 		envConfig.setConfigParam(
 				EnvironmentConfig.CLEANER_LOOK_AHEAD_CACHE_SIZE,
-				Long.toString(1024 * 1024));
+				Long.toString(1024 * 64));
 		envConfig.setConfigParam(EnvironmentConfig.CLEANER_READ_SIZE,
-				Long.toString(1024 * 1024));
+				Long.toString(1024 * 64));
 	}
 
 	public BJEConfig()
